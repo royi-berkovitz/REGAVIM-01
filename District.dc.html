@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Assistant:wght@400&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+html,body{margin:0;padding:0;background:rgb(252,251,246);}
+body{font-family:Heebo,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:rgb(29,69,115);text-decoration:none;}
+a:hover{color:rgb(97,55,17);}
+*{box-sizing:border-box;}
+input::placeholder{color:rgb(112,112,112);}
+@media (min-width:760px){
+.rg-arr,.rg-arr-b,.rg-arr-k{position:relative}
+.rg-arr::after,.rg-arr-b::after,.rg-arr-k::after{content:"";position:absolute;left:12px;top:50%;width:11px;height:11px;margin-top:-5.5px;background-repeat:no-repeat;background-position:center;background-size:contain;opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;pointer-events:none}
+.rg-arr:hover::after,.rg-arr-b:hover::after,.rg-arr-k:hover::after{opacity:1;transform:translateX(0)}
+.rg-arr::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M13 7H5' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M7 2.5L1 7l6 4.5z' fill='%23fff'/%3E%3C/svg%3E")}
+.rg-arr-b::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M13 7H5' stroke='%23613711' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M7 2.5L1 7l6 4.5z' fill='%23613711'/%3E%3C/svg%3E")}
+.rg-arr-k::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M13 7H5' stroke='%23000' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M7 2.5L1 7l6 4.5z' fill='%23000'/%3E%3C/svg%3E")}
+}
+
+.wA,.wB,.wC{transform-box:fill-box;transform-origin:center;animation-duration:2.3s;animation-timing-function:cubic-bezier(.45,.05,.55,.95);animation-iteration-count:infinite}
+.wA{animation-name:wA}.wB{animation-name:wB}.wC{animation-name:wC}
+@keyframes wA{0%{transform:rotate(0deg) scale(1)}34.78%{transform:rotate(180deg) scale(.5)}69.57%,100%{transform:rotate(360deg) scale(1)}}
+@keyframes wB{0%,8.7%{transform:rotate(0deg) scale(1)}43.48%{transform:rotate(180deg) scale(.9)}78.26%,100%{transform:rotate(360deg) scale(1)}}
+@keyframes wC{0%,17.39%{transform:rotate(0deg) scale(1)}52.17%{transform:rotate(180deg) scale(1.6)}86.96%,100%{transform:rotate(360deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){.wA,.wB,.wC{animation:none!important}}
+</style>
+</helmet>
+
+<div dir="rtl" style="min-height:100vh;background:rgb(252,251,246);color:rgb(0,0,0);font-family:Heebo,sans-serif;overflow-x:clip;">
+
+  <!-- Side donate tab -->
+  <a href="Donate.dc.html" style="position:fixed;left:0;top:311px;z-index:60;width:83px;height:82px;border-radius:4px;background:rgb(29,69,115);display:{{ g.sideTab }};align-items:center;justify-content:center;padding:5px 0;color:rgb(255,255,255);font-weight:700;font-size:15px;line-height:100%;text-align:center;" style-hover="background:rgb(21,49,137);color:rgb(255,255,255);">לתרומה<br>לחצו כאן</a>
+
+  <!-- Header -->
+  <header data-screen-label="Header" style="position:sticky;top:0;z-index:50;background:rgb(252,251,246);">
+    <div style="max-width:1920px;margin:0 auto;padding:0 {{ mar }}px;position:relative;">
+      <div style="position:relative;display:flex;align-items:flex-start;gap:{{ g.hdrGap }}px;height:{{ headerH }}px;transition:height .25s ease;">
+        <a href="#top" aria-label="רגבים – עמוד הבית" onMouseEnter="{{ logoEnter }}" onMouseLeave="{{ logoLeave }}" style="position:{{ g.logoPos }};z-index:{{ g.logoZ }};left:{{ g.logoLeft }};top:0;transform:rotate({{ logoRot }}deg);transform-origin:calc(100% - {{ logoW }}px * 0.5) 55.5%;transition:height .25s ease,transform .35s ease,left .4s cubic-bezier(.4,0,.2,1);flex-shrink:0;width:{{ g.logoBox }}px;height:{{ logoH }}px;margin-right:{{ g.logoMR }}px;">
+          <img src="assets/logo.png" alt="לוגו תנועת רגבים" style="position:absolute;right:0;top:0;width:{{ logoW }}px;height:100%;object-fit:cover;display:block;transition:width .25s ease;">
+        </a>
+        <div style="flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:{{ g.hdrInner }}px;padding-top:{{ navPad }}px;transition:padding .25s ease;">
+          <div style="display:{{ g.flagsHdr }};align-items:center;gap:10px;flex-shrink:0;">
+            <button onClick="{{ setHe }}" aria-label="עברית" title="עברית" style="filter:{{ heFilter }};opacity:{{ heOpacity }};transition:filter .2s,opacity .2s;width:30px;height:30px;overflow:hidden;position:relative;direction:ltr;padding:0;border:0;background:none;cursor:pointer;">
+              <img src="assets/flag-il.svg" alt="" style="width:30px;height:30px;display:block;">
+            </button>
+            <button onClick="{{ setEn }}" aria-label="English" title="English" style="filter:{{ enFilter }};opacity:{{ enOpacity }};transition:filter .2s,opacity .2s;width:30px;height:30px;overflow:hidden;position:relative;direction:ltr;padding:0;border:0;background:none;cursor:pointer;">
+              <img src="assets/flag-us.svg" alt="" style="width:30px;height:30px;display:block;">
+            </button>
+          </div>
+          <nav style="display:{{ navDisplay }};align-items:center;gap:32px;flex-wrap:nowrap;justify-content:center;">
+            <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+              <div onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="position:relative;">
+                <a href="{{ n.href }}" onClick="{{ n.onClick }}" style="font-size:20px;line-height:100%;white-space:nowrap;font-weight:{{ n.weight }};color:{{ n.color }};padding-bottom:5px;background-image:linear-gradient(rgb(97,55,17),rgb(97,55,17));background-repeat:no-repeat;background-position:right bottom;background-size:0% 1px;transition:background-size .35s ease,color .2s;" style-hover="color:rgb(97,55,17);background-size:100% 1px;">{{ n.label }}</a>
+                <div style="display:{{ n.subDisp }};position:absolute;top:100%;right:-16px;min-width:100%;z-index:60;padding-top:6px;">
+                  <div style="background:rgb(252,251,246);border-radius:0 0 8px 8px;box-shadow:0px 5px 10px 0px rgba(0,0,0,0.25);padding:12px 0;display:flex;flex-direction:column;">
+                    <sc-for list="{{ n.subs }}" as="sb" hint-placeholder-count="5">
+                      <a href="{{ sb.href }}" style="padding:7px 16px;font-size:18px;line-height:1.2;white-space:nowrap;color:rgb(44,44,44);" style-hover="color:rgb(97,55,17);background:rgb(245,245,245);">{{ sb.label }}</a>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </nav>
+          <button onClick="{{ toggleMenu }}" aria-label="תפריט" style="display:{{ burgerDisplay }};flex-direction:column;justify-content:center;gap:6px;width:44px;height:44px;padding:10px;border:{{ g.burgerB }};border-radius:4px;background:transparent;cursor:pointer;margin-inline-start:{{ g.burgerM }};">
+            <span style="display:block;height:2px;background:rgb(0,0,0);"></span>
+            <span style="display:block;height:2px;background:rgb(0,0,0);"></span>
+            <span style="display:block;height:2px;background:rgb(0,0,0);"></span>
+          </button>
+          <a href="Donate.dc.html" style="position:{{ g.btnPos }};top:0;left:{{ g.btnLeft }};flex-shrink:0;width:{{ g.btnW }}px;height:{{ g.btnH }}px;border-radius:{{ g.btnR }};background:rgb(97,55,17);box-shadow:inset 0 0 0 1px rgb(97,55,17);transition:background .2s,color .2s;display:{{ btnDisp }};align-items:center;justify-content:center;text-align:center;padding:{{ g.btnPad }};color:rgb(255,255,255);font-weight:700;font-size:{{ g.btnF }}px;line-height:{{ g.btnLH }};" style-hover="background:transparent;color:rgb(97,55,17);">תמכו בנו</a>
+        </div>
+      </div>
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <nav style="position:absolute;top:100%;left:{{ g.menuL }};right:{{ g.menuR }};z-index:55;background:rgb(252,251,246);border:1px solid rgb(0,0,0);border-top:0;border-left-width:{{ g.menuBW }}px;border-right-width:{{ g.menuBW }}px;border-radius:{{ g.menuRad }};display:flex;flex-direction:column;padding:8px 0;box-shadow:0px 5px 10px 0px rgba(0,0,0,0.25);">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+            <a href="{{ n.href }}" onClick="{{ n.onClick }}" style="padding:12px 24px;font-size:20px;line-height:100%;font-weight:{{ n.weight }};color:{{ n.color }};" style-hover="color:rgb(97,55,17);background:rgb(245,245,245);">{{ n.label }}</a>
+            <sc-for list="{{ n.subs }}" as="sb" hint-placeholder-count="0">
+              <a href="{{ sb.href }}" style="padding:8px 24px 8px 24px;margin-right:24px;font-size:17px;line-height:1.2;color:rgb(44,44,44);" style-hover="color:rgb(97,55,17);background:rgb(245,245,245);">{{ sb.label }}</a>
+            </sc-for>
+          </sc-for>
+          <a href="Donate.dc.html" onClick="{{ closeMenu }}" style="display:{{ g.donateMenu }};padding:12px 24px;font-size:20px;line-height:100%;color:rgb(0,0,0);"><span style="display:inline-block;margin:-6px -12px;padding:6px 12px;border-radius:5px;background:rgb(97,55,17);box-shadow:inset 0 0 0 1px rgb(97,55,17);color:rgb(255,255,255);transition:background .2s,color .2s;" style-hover="background:transparent;color:rgb(97,55,17);">תמכו בנו</span></a>
+          <div style="display:{{ g.flagsMenu }};align-items:center;gap:10px;margin:8px 24px 0;padding:16px 0 8px;border-top:1px solid rgb(0,0,0);">
+            <button onClick="{{ setHe }}" aria-label="עברית" title="עברית" style="filter:{{ heFilter }};opacity:{{ heOpacity }};transition:filter .2s,opacity .2s;width:30px;height:30px;overflow:hidden;position:relative;direction:ltr;padding:0;border:0;background:none;cursor:pointer;"><img src="assets/flag-il.svg" alt="" style="width:30px;height:30px;display:block;"></button>
+            <button onClick="{{ setEn }}" aria-label="English" title="English" style="filter:{{ enFilter }};opacity:{{ enOpacity }};transition:filter .2s,opacity .2s;width:30px;height:30px;overflow:hidden;position:relative;direction:ltr;padding:0;border:0;background:none;cursor:pointer;"><img src="assets/flag-us.svg" alt="" style="width:30px;height:30px;display:block;"></button>
+          </div>
+        </nav>
+      </sc-if>
+    </div>
+  </header>
+
+  <main id="top" style="max-width:1920px;margin:0 auto;padding:0 {{ mar }}px;">
+    <section data-screen-label="Banner" style="position:relative;margin-top:{{ pv.banMT }}px;height:{{ pv.banH }}px;border-radius:4px 4px 20px 20px;overflow:hidden;background:linear-gradient(180deg, rgba(0,0,0,0) 35.31%, rgba(0,0,0,0.64) 100%), url(assets/hero.png) center 40% / cover no-repeat;display:flex;align-items:center;justify-content:flex-start;padding:0 {{ pv.banPR }}px 0 {{ pv.banPad }}px;">
+      <div style="font-weight:500;font-size:{{ pv.banF }}px;line-height:1.2;color:rgb(255,255,255);text-align:{{ pv.banTA }};text-wrap:pretty;max-width:100%;">התנועה לשמירה על אדמות הלאום ועל משאבי הטבע</div>
+    </section>
+    <div style="padding-top:{{ pv.crumbPT }}px;font-size:16px;line-height:1.2;text-align:right;"><a href="Home.dc.html" style="color:rgb(0,0,0);">דף ראשי</a> &gt; <strong style="font-weight:700;">{{ distName }}</strong></div>
+
+    <section data-screen-label="District intro" style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:32px;align-items:center;padding-top:34px;min-height:{{ aboutMinH }}px;">
+      <div style="grid-column:{{ g.aboutText }};min-width:0;display:flex;flex-direction:column;gap:33px;">
+        <h1 style="margin:0;font-weight:700;font-size:{{ g.h2 }}px;line-height:100%;color:rgb(112,112,112);">{{ distName }}</h1>
+        <p style="margin:0;font-size:16px;line-height:{{ g.lh }};color:rgb(44,44,44);white-space:pre-line;">{{ distText }}</p>
+      </div>
+      <div style="grid-column:{{ g.aboutVis }};justify-self:end;position:relative;overflow:{{ g.visOv }};width:{{ visW }}px;height:{{ visH }}px;max-width:100%;"><div style="position:absolute;left:0;top:0;width:1083px;height:594px;transform:scale({{ visScale }}) translateX({{ g.visX }}px);transform-origin:0 0;">
+        <div style="position:absolute;left:455.559px;top:0;width:627.128px;height:593.223px;background:url(assets/tree.svg) 85.534% 18.475% / auto 106.997% no-repeat;opacity:0.15;"></div>
+        <div style="position:absolute;left:0;top:10.858px;width:784.386px;height:579.486px;clip-path:polygon(0 0,100% 0,89.28% 40.85%,83.6% 100%,0 100%);">
+          <div style="position:absolute;left:0;top:0.481px;width:895.359px;height:578.525px;border-radius:20px 0 0 20px;background-image:url({{ distPhoto }});background-size:123.308% 110.227%;background-position:9.895% 92.478%;background-repeat:no-repeat;"></div>
+        </div>
+        <div style="position:absolute;left:570.396px;top:8.721px;width:232.326px;height:582.368px;">
+          <x-import component-from-global-scope="Group195" from="./components/Components.bundle.js" property1="{{ mapVariant }}" hint-size="232px,582px"></x-import>
+          <a href="District.dc.html?d=north" aria-label="מרחב צפון" onMouseEnter="{{ hvNorth }}" onMouseLeave="{{ onMapLeave }}" style="position:absolute;left:132.683px;top:82.905px;width:99.643px;height:31.797px;border-radius:84px;z-index:2;"></a>
+          <a href="District.dc.html?d=yosh" aria-label="מרחב יו״ש" onMouseEnter="{{ hvYosh }}" onMouseLeave="{{ onMapLeave }}" style="position:absolute;left:108.921px;top:183.17px;width:102.509px;height:31.797px;border-radius:84px;z-index:2;"></a>
+          <a href="District.dc.html?d=jerusalem" aria-label="מרחב ירושלים" onMouseEnter="{{ hvJerusalem }}" onMouseLeave="{{ onMapLeave }}" style="position:absolute;left:72.69px;top:275.141px;width:129.963px;height:31.797px;border-radius:84px;z-index:2;"></a>
+          <a href="District.dc.html?d=center" aria-label="מרחב מרכז" onMouseEnter="{{ hvCenter }}" onMouseLeave="{{ onMapLeave }}" style="position:absolute;left:-57.273px;top:214.967px;width:129.963px;height:31.797px;border-radius:84px;z-index:2;"></a>
+          <a href="District.dc.html?d=negev" aria-label="מרחב נגב" onMouseEnter="{{ hvNegev }}" onMouseLeave="{{ onMapLeave }}" style="position:absolute;left:45.478px;top:394.773px;width:100.046px;height:31.797px;border-radius:84px;z-index:2;"></a>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- Join -->
+    <section id="donate" data-screen-label="Join" style="position:relative;margin-top:{{ pv.secGap }}px;min-height:300px;border-radius:20px;overflow:hidden;box-shadow:0px 5px 10px 0px rgba(0,0,0,0.25);background:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(47,24,3,0.52) 60.15%), url(assets/join.jpg) 27.222% 80.809% / cover no-repeat;display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;padding:{{ g.joinPad }};">
+      <div style="grid-column:{{ g.joinText }};display:flex;flex-direction:column;gap:28px;padding:26px 0;">
+        <h2 style="margin:0;font-weight:400;font-size:{{ g.h2j }}px;line-height:100%;color:rgb(255,255,255);">הצטרפו אלינו</h2>
+        <p style="margin:0;font-size:16px;line-height:{{ g.lh }};color:rgb(255,255,255);">תרומתכם מאפשרת לנו להמשיך להגן על אדמות הלאום, להיאבק בפגיעה בשלטון החוק ולהשפיע על המציאות בשטח.</p>
+        <a class="rg-arr" href="Donate.dc.html" style="align-self:flex-end;width:182.792px;height:45.747px;border-radius:4px;background:rgb(29,69,115);display:flex;align-items:center;justify-content:center;color:rgb(255,255,255);font-size:24px;line-height:1.4;" style-hover="background:rgb(21,49,137);color:rgb(255,255,255);">תרומה</a>
+      </div>
+    </section>
+
+
+    <section data-screen-label="Position papers" style="padding-top:{{ pv.secGap }}px;">
+      <h2 style="margin:0;text-align:center;font-weight:400;font-size:{{ g.h2b }}px;line-height:{{ g.h2bl }}px;margin-bottom:{{ pv.h2mb }}px;">ניירות עמדה</h2>
+      <div style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:24px;">
+        <sc-for list="{{ papers }}" as="c" hint-placeholder-count="3">
+          <article style="grid-column:span {{ pv.cardSpan }};display:flex;flex-direction:column;gap:16px;padding:14px;box-shadow:inset 0 0 0 1px rgb(0,0,0), 0px 5px 10px 0px rgba(0,0,0,0.25);background:rgb(252,251,246);border-radius:20px;">
+            <div style="height:{{ pv.imgH }}px;border-radius:7px;background-image:url({{ c.img }});background-size:cover;background-position:center;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 8px;"><span style="padding:4px 16px;border-radius:999px;background:rgb(97,55,17);color:rgb(255,255,255);font-weight:700;font-size:14px;line-height:1.4;">{{ c.tag }}</span><span style="font-size:14px;line-height:1.4;color:rgb(44,44,44);">{{ c.date }}</span></div>
+            <h3 style="margin:0;padding:0 8px;font-weight:400;font-size:{{ pv.cardH }}px;line-height:1.1;">{{ c.title }}</h3>
+            <p style="margin:0;padding:0 8px 8px;font-size:16px;line-height:1.4;color:rgb(44,44,44);flex:1;">{{ c.body }}</p>
+            <a class="rg-arr" href="#" style="align-self:flex-end;min-width:152px;height:39.716px;padding:0 20px;border-radius:4px;background:rgb(29,69,115);display:flex;align-items:center;justify-content:center;color:rgb(255,255,255);font-weight:700;font-size:16px;line-height:1.4;" style-hover="background:rgb(21,49,137);color:rgb(255,255,255);">למסמך המלא</a>
+          </article>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:32px;"><a class="rg-arr-k" href="#" style="min-width:178px;height:42px;padding:0 24px;border-radius:4px;background:rgb(252,251,246);box-shadow:inset 0 0 0 1px rgb(0,0,0);display:flex;align-items:center;justify-content:center;color:rgb(0,0,0);font-size:20px;line-height:1.4;" style-hover="background:rgb(245,245,245);color:rgb(0,0,0);">לכל הניירות עמדה</a></div>
+    </section>
+    <div style="height:1px;background:rgb(0,0,0);margin-top:{{ pv.secGap }}px;"></div>
+
+    <section data-screen-label="Activities" style="padding-top:{{ pv.secGap }}px;">
+      <h2 style="margin:0;text-align:center;font-weight:400;font-size:{{ g.h2b }}px;line-height:{{ g.h2bl }}px;margin-bottom:{{ pv.h2mb }}px;">פעילויות</h2>
+      <div style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:24px;">
+        <sc-for list="{{ acts }}" as="c" hint-placeholder-count="3">
+          <article style="grid-column:span {{ pv.cardSpan }};display:flex;flex-direction:column;gap:16px;padding:14px;box-shadow:inset 0 0 0 1px rgb(0,0,0), 0px 5px 10px 0px rgba(0,0,0,0.25);background:rgb(252,251,246);border-radius:20px;">
+            <div style="height:{{ pv.imgH }}px;border-radius:7px;background-image:url({{ c.img }});background-size:cover;background-position:center;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 8px;"><span style="padding:4px 16px;border-radius:999px;background:rgb(97,55,17);color:rgb(255,255,255);font-weight:700;font-size:14px;line-height:1.4;">{{ c.tag }}</span><span style="font-size:14px;line-height:1.4;color:rgb(44,44,44);">{{ c.date }}</span></div>
+            <h3 style="margin:0;padding:0 8px;font-weight:400;font-size:{{ pv.cardH }}px;line-height:1.1;">{{ c.title }}</h3>
+            <p style="margin:0;padding:0 8px 8px;font-size:16px;line-height:1.4;color:rgb(44,44,44);flex:1;">{{ c.body }}</p>
+            <a class="rg-arr" href="#" style="align-self:flex-end;min-width:152px;height:39.716px;padding:0 20px;border-radius:4px;background:rgb(29,69,115);display:flex;align-items:center;justify-content:center;color:rgb(255,255,255);font-weight:700;font-size:16px;line-height:1.4;" style-hover="background:rgb(21,49,137);color:rgb(255,255,255);">לכתבה המלאה</a>
+          </article>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:32px;"><a class="rg-arr-k" href="#" style="min-width:178px;height:42px;padding:0 24px;border-radius:4px;background:rgb(252,251,246);box-shadow:inset 0 0 0 1px rgb(0,0,0);display:flex;align-items:center;justify-content:center;color:rgb(0,0,0);font-size:20px;line-height:1.4;" style-hover="background:rgb(245,245,245);color:rgb(0,0,0);">לכל הפעילויות</a></div>
+    </section>
+    <div style="height:1px;background:rgb(0,0,0);margin-top:{{ pv.secGap }}px;"></div>
+
+    <section data-screen-label="Legal library" style="padding-top:{{ pv.secGap }}px;">
+      <h2 style="margin:0;text-align:center;font-weight:400;font-size:{{ g.h2b }}px;line-height:{{ g.h2bl }}px;margin-bottom:{{ pv.h2mb }}px;">ספרייה משפטית</h2>
+      <div style="display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:24px;">
+        <sc-for list="{{ legal }}" as="c" hint-placeholder-count="3">
+          <article style="grid-column:span {{ pv.cardSpan }};display:flex;flex-direction:column;gap:24px;padding:20px 24px;box-shadow:inset 0 0 0 1px rgb(0,0,0), 0px 5px 10px 0px rgba(0,0,0,0.25);background:rgb(252,251,246);border-radius:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;"><span style="padding:4px 18px;border-radius:999px;background:rgb(0,122,184);color:rgb(255,255,255);font-weight:700;font-size:14px;line-height:1.4;">בג"ץ</span><span style="font-size:14px;line-height:1.4;color:rgb(44,44,44);">י' שבט התשפ"ו - 28 ינואר 2026</span></div>
+            <h3 style="margin:0;font-weight:400;font-size:{{ pv.cardH }}px;line-height:1.1;">{{ c.title }}</h3>
+            <a class="rg-arr" href="#" style="align-self:flex-end;min-width:152px;height:39.716px;padding:0 20px;border-radius:4px;background:rgb(29,69,115);display:flex;align-items:center;justify-content:center;color:rgb(255,255,255);font-weight:700;font-size:16px;line-height:1.4;" style-hover="background:rgb(21,49,137);color:rgb(255,255,255);">קרא עוד</a>
+          </article>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:32px;"><a class="rg-arr-k" href="#" style="min-width:178px;height:42px;padding:0 24px;border-radius:4px;background:rgb(252,251,246);box-shadow:inset 0 0 0 1px rgb(0,0,0);display:flex;align-items:center;justify-content:center;color:rgb(0,0,0);font-size:20px;line-height:1.4;" style-hover="background:rgb(245,245,245);color:rgb(0,0,0);">לספרייה</a></div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" data-screen-label="Newsletter" style="margin-top:36px;border-top:1px solid rgb(0,0,0);display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:48px;padding:27px 0 84px;">
+      <div style="grid-column:{{ g.nlText }};display:flex;flex-direction:column;gap:26px;">
+        <h2 style="margin:0;font-weight:400;font-size:{{ g.h2 }}px;line-height:100%;">ניוזלטר</h2>
+        <p style="margin:0;font-size:{{ g.nlP }}px;line-height:1.2;">הצטרפו לרשימת התפוצה שלנו וקבלו את כל הדוחות, החשיפות והעדכונים החשובים ישירות למייל.</p>
+      </div>
+      <form noValidate onSubmit="{{ onSubscribe }}" style="grid-column:{{ g.nlForm }};display:flex;flex-direction:column;gap:20px;padding-top:13px;">
+        <input type="email" required placeholder="אימייל" value="{{ email }}" onChange="{{ onEmail }}" onInvalid="{{ onInvalidEmail }}" onInput="{{ onInputValid }}" style="height:48px;border-radius:4px;background:rgb(255,255,255);border:1px solid rgb(44,44,44);padding:0 24px;font-family:Heebo,sans-serif;font-size:16px;color:rgb(0,0,0);outline:none;" style-focus="border-color:rgb(29,69,115);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:16px;line-height:1.4;cursor:pointer;">
+            <input type="checkbox" required checked="{{ agree }}" onChange="{{ onAgree }}" onInvalid="{{ onInvalidAgree }}" onInput="{{ onInputValid }}" style="width:17.815px;height:17.063px;margin:0;accent-color:rgb(29,69,115);">
+            אני מאשר את תנאי השימוש ומדיניות הפרטיות
+          </label>
+          <button type="submit" style="width:166.619px;height:39.716px;border-radius:4px;border:0;background:rgb(97,55,17);box-shadow:inset 0 0 0 1px rgb(97,55,17);transition:background .2s,color .2s;color:rgb(255,255,255);font-family:Heebo,sans-serif;font-weight:700;font-size:16px;line-height:1.4;cursor:pointer;" style-hover="background:transparent;color:rgb(97,55,17);">{{ subscribeLabel }}</button>
+        </div>
+        <div role="alert" style="display:{{ formErrDisp }};color:rgb(176,32,32);font-size:16px;line-height:1.4;">{{ formErrText }}</div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer data-screen-label="Footer" style="background:rgb(17,39,65);color:rgb(255,255,255);">
+    <div style="max-width:1920px;margin:0 auto;padding:29px {{ mar }}px 74px;display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));column-gap:{{ gut }}px;row-gap:48px;">
+      <div style="grid-column:1 / -1;display:flex;flex-wrap:{{ g.ftWrap }};align-items:flex-start;gap:48px {{ g.ftGap }}px;">
+      <div style="flex:0 1 430px;min-width:0;display:flex;flex-direction:column;gap:22px;padding-top:30px;">
+        <span style="font-weight:700;font-size:24px;line-height:100%;">תנועת רגבים</span>
+        <p style="margin:0;font-size:16px;line-height:1.4;">תנועת רגבים הינה תנועה ציבורית שהוקמה במטרה להוביל לקביעת סדר יום יהודי וציוני למדינת ישראל בהיבטי קרקע וסביבה.</p>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px {{ g.socGap }}px;margin-top:18px;align-self:{{ g.socSelf }};justify-content:{{ g.socJ }};">
+          <a href="#" aria-label="WhatsApp" title="דברו איתנו בווטסאפ" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);position:relative;width:36.105px;height:36.105px;border-radius:50%;background:currentColor;display:block;" style-hover="transform:rotate(3deg) scale(1.05);">
+            <img src="assets/social-wa-1.svg" alt="" style="position:absolute;left:7px;top:5.986px;width:23px;height:23.077px;">
+            <img src="assets/social-wa-2.svg" alt="" style="position:absolute;left:12.397px;top:11.843px;width:12.189px;height:11.416px;">
+          </a>
+          <a href="#" aria-label="X" title="עקבו אחרינו ב-X" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);width:36.105px;height:36.105px;border-radius:50%;background:currentColor;display:flex;align-items:center;justify-content:center;" style-hover="transform:rotate(3deg) scale(1.05);">
+            <svg width="20.944" height="19.602" viewBox="0 0 20.944 19.602" fill="rgb(17,39,65)"><path d="M 0.051 0 L 8.137 10.812 L 0 19.602 L 1.831 19.602 L 8.956 11.906 L 14.712 19.602 L 20.944 19.602 L 12.402 8.182 L 19.976 0 L 18.145 0 L 11.584 7.088 L 6.283 0 L 0.051 0 Z M 2.744 1.349 L 5.607 1.349 L 18.25 18.253 L 15.387 18.253 L 2.744 1.349 Z"></path></svg>
+          </a>
+          <a href="#" aria-label="Telegram" title="עקבו אחרינו בטלגרם" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);display:block;width:36.105px;height:36.105px;" style-hover="transform:rotate(3deg) scale(1.05);"><img src="assets/social-1.svg" alt="" style="width:100%;height:100%;display:block;"></a>
+          <a href="#" aria-label="YouTube" title="עקבו אחרינו ביוטיוב" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);display:block;width:36.105px;height:36.105px;" style-hover="transform:rotate(3deg) scale(1.05);"><img src="assets/social-2.svg" alt="" style="width:100%;height:100%;display:block;"></a>
+          <a href="#" aria-label="Instagram" title="עקבו אחרינו באינסטגרם" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);display:block;width:36px;height:36px;" style-hover="transform:rotate(3deg) scale(1.05);"><img src="assets/social-3.svg" alt="" style="width:100%;height:100%;display:block;"></a>
+          <a href="#" aria-label="Facebook" title="עקבו אחרינו בפייסבוק" style="transition:color .2s,transform .35s ease;color:rgb(255,255,255);display:block;width:36.261px;height:36.13px;" style-hover="transform:rotate(3deg) scale(1.05);"><img src="assets/social-4.svg" alt="" style="width:100%;height:100%;display:block;"></a>
+        </div>
+      </div>
+      <div style="display:contents;">
+        <div style="display:flex;flex-direction:column;gap:22px;padding:10px 0;margin-right:{{ g.ftNavM }};">
+          <span style="font-weight:700;font-size:24px;line-height:100%;">ניווט</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px {{ g.ftInner }}px;">
+            <ul style="margin:0;padding:0 18px 0 0;font-size:20px;line-height:1.6;">
+              <li><a href="#about" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">אודות</a></li>
+              <li><a href="Donate.dc.html" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">תרומות</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">וידאו</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">דווחו לנו</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">פודקאסטים</a></li>
+            </ul>
+            <ul style="margin:0;padding:0 18px 0 0;font-size:20px;line-height:1.6;">
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">ספרייה משפטית</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">פרסומים ומחקר</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">התנדבות</a></li>
+              <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">צור קשר</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px;padding:10px 0;padding-right:{{ g.ftDivP }};border-right:{{ g.ftDivB }};">
+          <span style="font-weight:700;font-size:24px;line-height:100%;">תחומי פעילות</span>
+          <ul style="margin:0;padding:0 18px 0 0;font-size:20px;line-height:1.6;">
+            <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">המערכה על שטחי C</a></li>
+            <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">בניה בלתי חוקית</a></li>
+            <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">ארץ – מתכננים ציונות</a></li>
+            <li><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">עתיקות וארכאולוגיה</a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div style="background:rgb(0,0,0);">
+      <div style="max-width:1920px;margin:0 auto;padding:{{ g.barPT }}px {{ mar }}px {{ g.barPB }}px;min-height:54px;display:flex;flex-direction:{{ g.barDir }};align-items:{{ g.barAI }};justify-content:{{ g.barJ }};text-align:{{ g.barTA }};gap:12px 24px;flex-wrap:wrap;">
+        <span style="order:{{ g.o2 }};align-self:{{ g.selfC }};margin-top:{{ g.crMT }}px;font-family:'Open Sans Hebrew',Heebo,sans-serif;font-size:16px;line-height:100%;">© כל הזכויות שמורות 2027</span>
+        <span style="order:{{ g.o1 }};display:flex;flex-direction:{{ g.legalDir }};align-items:{{ g.barAI }};gap:{{ g.legalGap }}px;font-size:18px;line-height:100%;">
+          <a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">תקנון האתר</a><span style="display:{{ g.sepD }};">|</span><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">מדיניות הפרטיות</a><span style="display:{{ g.sepD }};">|</span><a href="#" style="color:rgb(255,255,255);" style-hover="color:rgb(158,224,249);">הצהרת נגישות</a>
+        </span>
+        <span dir="ltr" style="order:{{ g.o3 }};align-self:{{ g.selfC }};margin-top:{{ g.cbMT }}px;display:flex;align-items:center;gap:11px;font-family:Assistant,sans-serif;font-size:16px;line-height:100%;">Created by <svg dir="ltr" style="overflow:visible;display:block;" viewBox="110 100 432 112" role="img" aria-label="Web3D" height="18">
+          <polygon fill="#FFFFFF" points="121.05 110.89 211.4 200.92 121.05 200.92 121.05 110.89" class="wA"></polygon>
+          <polygon fill="#FFFFFF" points="155.64 115.9 204.84 164.95 204.84 182.3 138.21 115.9 155.64 115.9" class="wB"></polygon>
+          <polygon fill="#FFFFFF" points="176.35 123.96 196.66 123.96 196.66 144.2 176.35 123.96" class="wC"></polygon>
+          <g fill="#FFFFFF"><path d="M306.83,130.6l-19.56,68.92h-13.48l-10.64-52.8-10.74,52.8h-13.58l-19.66-68.92c6.59-.01,15.47.35,18.24,14.82l8.11,33.73,10.14-48.55h15l9.93,48.55,8.15-33.71c3.25-15.84,14.55-14.84,18.1-14.84"></path><path d="M329.94,200.73c-16.22-.51-24.32-9.93-24.32-28.17s8.21-27.36,24.53-27.46c17.03,0,25.03,10.44,24.02,31.42h-34.66c.51,8.21,4.05,12.37,10.64,12.37,3.14,0,6.08-1.32,8.72-3.85,1.22-1.32,2.74-1.93,4.56-1.93h9.93c-2.94,11.35-10.24,17.63-23.41,17.63M319.7,166.88h20.17c-.81-7.09-4.15-10.74-9.93-10.74s-9.22,3.65-10.24,10.74"></path><path d="M373.92,153.4c3.45-5.57,8.51-8.31,15.2-8.31,14.29.51,21.38,9.83,21.38,28.07s-8.31,26.86-24.93,27.16c-16.72.1-25.13-7.91-25.13-24.02v-45.71c4.46,0,13.48,1.26,13.48,13.49v9.31ZM373.92,172.56c-.1,10.85,3.55,16.32,11.25,16.32s11.55-5.47,11.55-16.32c-.3-10.34-4.05-15.4-11.35-15.4s-11.05,5.07-11.45,15.4"></path><path d="M449.63,149.25c.1-5.78-2.94-8.72-9.22-8.72s-9.63,3.65-9.93,11.05h-7.3c-4.76.1-6.49-2.33-5.17-7.3,2.94-9.93,10.54-14.8,22.9-14.8,15-.1,22.7,6.08,23.01,18.75.3,6.28-2.53,10.95-8.51,13.68,7.4,2.64,11.05,8.01,11.05,16.22,0,14.8-8.61,22.3-26.05,22.4-17.33,0-25.64-7.7-24.83-23.01h13.68c.1,7.81,3.85,11.65,11.25,11.56,7.4-.1,11.15-3.45,11.15-10.34s-4.46-10.44-13.48-10.54h-2.13v-9.43h1.52c7.6,0,12.06-2.53,12.06-9.53"></path><path d="M530.91,165.06c0,16.93-7.3,29.49-20.57,33.04-3.45.91-8.31,1.42-14.59,1.42h-23.21v-61.52c0-4.76,2.33-7.3,7.1-7.4h19.86c21.89,0,31.42,12.47,31.42,34.46M499.5,142.66h-13.07v44.39h11.25c13.99,0,18.85-7.5,18.85-21.99s-4.25-22.4-17.03-22.4"></path></g>
+        </svg></span>
+      </div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ isMobilePreview }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;top:0;bottom:0;left:0;right:0;z-index:500;background:#e3e6eb;display:flex;align-items:center;justify-content:center;">
+      <div style="width:417px;height:calc(100vh - 32px);max-height:784px;padding:12px;border-radius:40px;background:#0b1220;box-shadow:0 30px 80px rgba(17,39,65,.32);">
+        <iframe src="{{ mobileSrc }}" title="Mobile preview" style="width:393px;height:100%;border:0;border-radius:28px;background:rgb(252,251,246);display:block;"></iframe>
+      </div>
+    </div>
+  </sc-if>
+  <div data-page-bounds="1" style="position:fixed;top:0;bottom:0;left:0;right:0;z-index:189;pointer-events:none;display:{{ boundsDisplay }};">
+    <div style="height:100%;max-width:1920px;margin:0 auto;box-shadow:inset 0 0 0 1px rgb(170,170,170);"></div>
+  </div>
+  <div data-grid-overlay="1" dir="ltr" style="position:fixed;top:0;bottom:0;left:0;right:0;z-index:190;pointer-events:none;display:{{ gridDisplay }};">
+    <div style="height:100%;max-width:1920px;margin:0 auto;padding:0 {{ mar }}px;display:grid;grid-template-columns:repeat({{ cols }},minmax(0,1fr));gap:{{ gut }}px;">
+      <sc-for list="{{ gridCols }}" as="gc" hint-placeholder-count="12">
+        <div style="position:relative;height:100%;border-left:0.5px solid rgba(255,47,208,.75);border-right:0.5px solid rgba(255,47,208,.75);background:rgba(255,47,208,.12);">
+          <span style="position:absolute;top:2px;left:50%;transform:translateX(-50%);font-family:monospace;font-size:9px;color:rgb(255,47,208);">{{ gc }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showGrid&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;showBounds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Page bounds&quot;,&quot;section&quot;:&quot;Preview&quot;},&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;label&quot;:&quot;Device&quot;,&quot;section&quot;:&quot;Preview&quot;}}">
+class Component extends DCLogic {
+  state = { vw: (() => { const w = document.documentElement.clientWidth; return w >= 200 ? w : 0; })(), wide: (() => { const w = document.documentElement.clientWidth; return w >= 200 ? w >= 1300 : true; })(), scrolled: false, lang: 'he', active: 'districts',  dept: 1, region: null, email: '', agree: false, subscribed: false };
+
+  _dk = (() => { try { const m = location.search.match(/[?&]d=(north|yosh|jerusalem|center|negev)/); return m ? m[1] : 'north'; } catch (e) { return 'north'; } })();
+
+  _inViewer = (() => { try { return window.self !== window.top && /Site Viewer/.test(window.parent.location.pathname); } catch (e) { return false; } })();
+  componentDidMount() {
+    try { if (window.parent !== window) window.parent.postMessage({ type: "rg-page", file: decodeURIComponent(location.pathname.split("/").pop()) }, "*"); } catch (e) {}
+    this._onScroll = () => {
+      const y = window.scrollY, s = this.state.scrolled ? y > 20 : y > 90;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    this._onResize = () => {
+      const vw = document.documentElement.clientWidth || window.innerWidth;
+      if (vw < 200) return;
+      const w = vw >= 1300;
+      if (vw === this.state.vw && w === this.state.wide) return;
+      this.setState(s => ({ vw, wide: w, menuOpen: w !== s.wide ? false : s.menuOpen }));
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onResize);
+    this._ro = new ResizeObserver(() => this._onResize());
+    this._ro.observe(document.body);
+    this._onResize();
+    let tries = 0;
+    this._poll = setInterval(() => {
+      this._onResize();
+      if ((this.state.vw >= 200 && tries > 5) || ++tries > 40) clearInterval(this._poll);
+    }, 50);
+    window.addEventListener('load', this._onResize);
+    try { if (/[?&]grid=1/.test(location.search) || localStorage.getItem('rg-grid') === '1') this.setState({ grid: true }); } catch (e) {}
+    this._onMsg = (e) => { const d = e.data; if (d && d.type === 'rg-grid') this.setState({ grid: !!d.on }); };
+    window.addEventListener('message', this._onMsg);
+    this._onStore = (e) => { if (e.key === 'rg-grid') this.setState({ grid: e.newValue === '1' }); };
+    window.addEventListener('storage', this._onStore);
+  }
+  componentWillUnmount() { this._ro && this._ro.disconnect(); clearInterval(this._poll); window.removeEventListener('load', this._onResize); window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onResize); window.removeEventListener('message', this._onMsg); window.removeEventListener('storage', this._onStore); }
+
+  pageVals(bp, pick, st, span, contentW) {
+    const d = bp === 'd'; const vs = Math.min(1, (d ? span(6) : contentW) / 627);
+    return { banMT: pick(2.7, 2.7, 40), banTA: 'right', banPR: bp === 'm' ? 20 : (st.wide === false ? 160 : 266), crumbPT: bp === 'm' ? 16 : 18, banH: pick(188.5, 188.5, 120), banF: pick(40, 40, 22), banPad: pick(52, 52, 20), secGap: pick(100, 100, 56), cardSpan: pick(4, 4, 6), imgH: pick(250, 250, 200), cardH: pick(32, 32, 26), visScale: vs, visW: Math.round(627 * vs), visH: Math.round(594 * vs), visCol: pick('7 / 13', '7 / 13', '1 / -1'), visJ: pick('end', 'end', 'center'), txtCol: pick('1 / 7', '1 / 7', '1 / -1'), h1: pick(36, 36, 30),
+      introPT: pick(60, 60, 28), h2mb: pick(47, 47, 28),
+      papers: [0, 1, 2].map(() => ({ img: 'assets/p/993d.jpg', tag: 'נייר עמדה', date: 'אייר התשע"ט – מאי 2019', title: 'דו"ח מצב סביבתי', body: 'כאן יופיע טקסט המתאר את נייר העמדה והכתוב בו, באופן תמציתי.' })),
+      acts: [0, 1, 2].map(() => ({ img: 'assets/p/090e.png', tag: 'ריבונות ומשילות', date: "י' שבט התשפ\"ו - 28 ינואר 2026", title: 'חברי הכנסת נקלעו לאזעקה', body: "בהמשך למטחים הכבדים ששוגרו ליישובי הצפון ורגע לפני ההסלמה בלחימה, הגענו למרום הגליל, קרית שמונה וצפת עם חברי שדולת ארץ ישראל בכנסת ואנשי תקשורת" })),
+      legal: [{ title: 'ברכת רם | בג"ץ 5190-18' }, { title: 'רומת אל הייב | בג"ץ 3455-18' }, { title: 'ראמה: משחתת רכב | 908-01-19' }] };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const navItems = [
+      ['home', 'עמוד הבית', 'Home.dc.html'], ['about', 'אודות', 'About.dc.html'], ['districts', 'מחוזות', 'District.dc.html'],
+      ['departments', 'מחלקות', 'Department.dc.html'], ['reports', 'מחקרים ודוחות', 'Publications.dc.html'],
+      ['contact', 'צרו קשר', '#newsletter']
+    ];
+    const deptBody = 'רכזי השטח של רגבים חורשים את הארץ, ומגיעים לכל פינה כדי לוודא שהשמירה על אדמות המדינה מתבצעת, שהרשויות מבצעות את תפקידן ושומרות על החוק ועל הסביבה. בנגב ובגליל, ביהודה ושומרון ובשפלה, בירושלים ובגולן, בשמורות הטבע, ובשטחי האש של צה"ל.';
+    const depts = [
+      ['מחקר', 'מחלקת המחקר'], ['שטח', 'מחלקת השטח'], ['קשרי ממשל', 'מחלקת קשרי ממשל'],
+      ['תקשורת והסברה', 'מחלקת התקשורת'], ['בינלאומית', 'המחלקה הבינלאומית'], ['משפטית', 'המחלקה המשפטית']
+    ];
+    const DIST = {
+      north: ['מחוז צפון', 'הצפון הוא אחד האזורים המגוונים והרגישים ביותר בישראל: מרמת הגולן ועד הגליל המערבי והעמקים.\nתנועת רגבים פועלת לאורך כל האזור במטרה לשמור על אדמות הלאום, להגן על השטחים הפתוחים ולבלום פגיעה בריבונות ובסדר הציבורי.', 'assets/p/5780.jpg'],
+      yosh: ['מחוז יהודה ושומרון', 'יהודה ושומרון הם לב ארץ ישראל ההיסטורית, ואזור שבו נאבקים על הקרקע והריבונות מדי יום.\nתנועת רגבים מתעדת, חוקרת ופועלת מול הרשויות לשמירה על אדמות הלאום ולמניעת בנייה בלתי חוקית.', 'assets/p/9ea8.png'],
+      jerusalem: ['מחוז ירושלים', 'ירושלים היא בירת ישראל, ואתגרי המשילות והמקרקעין בה ייחודיים ורגישים.\nתנועת רגבים פועלת בעיר ובסביבתה לשמירה על הקרקע, לאכיפת החוק ולחיזוק הריבונות.', 'assets/p/8b9a.png'],
+      center: ['מחוז מרכז', 'אזור המרכז הוא הצפוף ביותר בישראל, ושמירה על שטחים פתוחים בו קריטית לדורות הבאים.\nתנועת רגבים פועלת למניעת פגיעה בקרקע, בסביבה ובמשאבי הטבע במרכז הארץ.', 'assets/about-photo.jpg'],
+      negev: ['מחוז נגב', 'הנגב הוא כמחצית משטחה של מדינת ישראל, ואזור שבו נדרשת משילות והקפדה על שלטון החוק.\nתנועת רגבים פועלת למניעת השתלטות על קרקעות מדינה ולשמירה על אדמות הלאום בנגב.', 'assets/p/5852.png']
+    };
+    const SUBS = {
+      districts: [['צפון', 'District.dc.html?d=north'], ['מרכז', 'District.dc.html?d=center'], ['דרום', 'District.dc.html?d=negev'], ['יהודה ושומרון', 'District.dc.html?d=yosh'], ['ירושלים', 'District.dc.html?d=jerusalem']],
+      departments: [['מחקר', 'Department.dc.html?d=research'], ['שטח', 'Department.dc.html?d=field'], ['פרלמנטרית', 'Department.dc.html?d=parliament'], ['תקשורת / הסברה', 'Department.dc.html?d=media'], ['משפטית', 'Department.dc.html?d=legal'], ['המחלקה הבינלאומית', 'Department.dc.html?d=intl'], ['ירוק עכשיו', 'Department.dc.html?d=green']]
+    };
+    const regionVariant = { north: 'variant2', yosh: 'variant3', jerusalem: 'variant4', center: 'variant6', negev: 'variant5' };
+    const sc = st.scrolled || st.wide === false;
+    const vw = st.vw >= 200 ? st.vw : 1920;
+    const bp = vw >= 760 ? 'd' : 'm';
+    const cols = bp === 'd' ? 12 : 6, gut = bp === 'd' ? 24 : 16, mar = bp === 'd' ? 80 : 20;
+    const contentW = Math.min(vw, 1920) - 2 * mar;
+    const colW = (contentW - (cols - 1) * gut) / cols;
+    const span = (k) => k * colW + (k - 1) * gut;
+    const pick = (d, t, m) => bp === 'd' ? d : bp === 't' ? (t ?? m) : m;
+    const visSpan = pick(8, 3, 6);
+    const visScale = bp === 'd' ? Math.max(0.2, Math.min(1, span(visSpan) / 1083)) : contentW / 380;
+    const lw = sc ? (bp === 'm' ? 90 : 106.5) : 213, lh = sc ? (bp === 'm' ? 104 : 123) : 246;
+    const fg = Math.max(20, Math.min(60, Math.round(contentW / 32)));
+    const g = {
+      heroPad: pick('0', '0 24px', '0 16px'), heroTitle: pick('2 / 10', '1 / -1', '1 / -1'), heroStats: pick('6 / 13', '1 / -1', '1 / -1'), statCols: pick(4, 4, 2),
+      aboutText: pick('1 / 5', '1 / 4', '1 / -1'), aboutVis: pick('5 / 13', '4 / 7', '1 / -1'),
+      joinPad: pick('35px 0 18px', '35px 24px 18px', '35px 16px 18px'), joinText: pick('2 / 6', '1 / 5', '1 / -1'),
+      deptPad: pick('36px 0', '24px', '16px'), deptText: pick('2 / 6', '1 / -1', '1 / -1'), deptTextRow: pick('1', '2', '2'), deptMedia: pick('6 / 12', '1 / -1', '1 / -1'), deptImg: pick('2 / -1', '1 / -1', '1 / -1'),
+      artPad: pick('17px 0 24px', '14px 14px 24px', '14px 14px 24px'), artImg: pick('1 / 6', '1 / -1', '1 / -1'), artImgM: pick('0 14px 0 0', '0', '0'), artText: pick('7 / 12', '1 / -1', '1 / -1'),
+      newsSpan: pick(4, 3, 6),
+      nlText: pick('3 / 7', '1 / -1', '1 / -1'), nlForm: pick('7 / 11', '1 / -1', '1 / -1'),
+      ftAbout: pick('1 / 5', '1 / -1', '1 / -1'), ftNav: pick('7 / 13', '1 / -1', '1 / -1'), ftWrap: pick('nowrap', 'wrap', 'wrap'), ftGap: pick(fg, 24, 24), ftInner: pick(fg * 1.5, 40, 40), ftNavM: pick((fg + 1) + 'px', '0', '0'), ftDivP: pick(fg + 'px', '0', '0'), ftDivB: pick('1px solid rgb(255,255,255)', 'none', 'none'),
+      statRG: pick(0, 0, 20), sideTab: pick('flex', 'flex', 'none'), flagsHdr: pick('flex', 'flex', 'none'), flagsMenu: pick('none', 'none', 'flex'), donateMenu: pick('none', 'none', 'block'), hdrGap: pick(90, 90, 10), logoBox: bp === 'd' ? 213 : lw, logoMR: pick(13, 13, 0), hdrInner: pick(48, 48, 10), btnW: pick(138.616, 138.616, 64), btnH: pick(34.775, 34.775, 56), btnR: pick('78px', '78px', '0 0 8px 8px'), btnPad: pick('5px 0', '5px 0', '0 8px'), btnLH: pick('100%', '100%', '1.2'), btnPos: pick('relative', 'relative', 'absolute'), btnLeft: bp === 'd' ? 'auto' : '0', btnF: pick(20, 20, 16), menuR: pick('260px', '260px', '0'), menuL: pick(mar + 'px', mar + 'px', '0'), menuBW: pick(1, 1, 0), menuRad: pick('0 0 4px 4px', '0 0 4px 4px', '0'), logoZ: pick('auto', 'auto', 60), logoPos: pick('relative', 'relative', 'absolute'), logoLeft: bp === 'd' ? 'auto' : (st.menuOpen && st.wide === false ? '0px' : 'calc(50% - ' + lw / 2 + 'px)'), burgerB: pick('1px solid rgb(0,0,0)', '1px solid rgb(0,0,0)', 'none'), burgerM: pick('auto', 'auto', '0'),
+      heroMinH: pick(596.682, 596.682, 640), heroGap: pick(48, 48, 28), h1: pick(52, 52, 34), h1l: pick(66, 66, 42), sub: pick(32, 32, 20), subl: pick(26, 26, 28), stat: pick(40, 40, 32), statl: pick(66, 66, 44), statLb: pick(24, 24, 18), statLbl: pick(35, 35, 26), statMin: pick(144.375, 144.375, 110),
+      lh: pick('100%', '100%', '1.4'), h2: pick(40, 40, 32), h2j: pick(48, 48, 36), visX: bp === 'd' ? 0 : -440, visOv: bp === 'd' ? 'visible' : 'hidden', joinMT: pick(83.777, 83.777, 48),
+      secPT1: pick(111, 111, 64), secPT2: pick(123, 123, 64), h2mb: pick(47, 47, 28), h2b: pick(52, 52, 34), h2bl: pick(66, 66, 42),
+      socGap: pick(24, 24, 14), socSelf: pick('flex-start', 'flex-start', 'stretch'), socJ: pick('flex-start', 'flex-start', 'space-between'), selfC: pick('auto', 'auto', 'center'), crMT: pick(0, 0, 28), o1: pick(0, 0, 1), o2: pick(0, 0, 2), o3: pick(0, 0, 3), legalDir: pick('row', 'row', 'column'), legalGap: pick(8, 8, 12), sepD: pick('inline', 'inline', 'none'), cbMT: pick(0, 0, 20), tabGap: pick(0, 0, 16), tabDisp: 'grid', tabCols: pick(6, 6, 3), tabR: pick('4px 4px 0 0', '4px 4px 0 0', '4px'), tabH: pick(68.635, 68.635, 52), tabMB: pick(-1, -1, 0), tabWS: 'normal', tabPad: pick('8px', '8px', '4px 6px'),
+      panelMin: pick(543.37, 543.37, 0), deptPB: pick(69, 69, 8), h3d: pick(52, 52, 32), h3dl: pick(66, 66, 40), mediaMin: pick(300, 300, 220),
+      artMin: pick(369.785, 369.785, 240), h3a: pick(40, 40, 28), cardMin: pick(683, 683, 0), cardImg: pick(316.826, 316.826, 220), cardPadX: pick(19, 19, 6), h3c: pick(36, 36, 26), nlP: pick(24, 24, 20),
+      barJ: pick('space-between', 'space-between', 'flex-start'), barDir: pick('row', 'row', 'column'), barAI: pick('center', 'center', 'flex-start'), barTA: pick('center', 'center', 'right'), barPT: pick(0, 0, 46), barPB: pick(0, 0, 16)
+    };
+    return {
+      ...this.pageVals(bp, pick, st, span, contentW),
+      pv: this.pageVals(bp, pick, st, span, contentW),
+      g, cols, gut, mar,
+      isMobilePreview: this.props.device === 'mobile',
+      mobileSrc: 'District.dc.html?embed=1' + ((location.search.match(/[?&](d=\w+)/) || [])[1] ? '&' + location.search.match(/[?&](d=\w+)/)[1] : '') + ((this.props.showGrid === true || st.grid) ? '&grid=1' : '') + (this.props.showBounds === false ? '&nobounds=1' : ''),
+      boundsDisplay: (this.props.showBounds === false || /[?&]nobounds=1/.test(location.search)) ? 'none' : 'block',
+      gridBtnDisp: this._inViewer ? 'none' : 'block',
+      gridBtnBg: (this.props.showGrid === true || st.grid) ? 'rgb(97,55,17)' : 'rgb(17,39,65)',
+      toggleGrid: () => { const on = !st.grid; try { localStorage.setItem('rg-grid', on ? '1' : '0'); } catch (e) {} this.setState({ grid: on }); },
+      gridDisplay: (this.props.showGrid === true || st.grid) ? 'block' : 'none',
+      gridCols: Array.from({ length: cols }, (_, i) => String(i + 1)),
+      logoEnter: () => this.setState({ logoHover: true }),
+      logoLeave: () => this.setState({ logoHover: false }),
+      logoSway: st.logoHover ? 1 : 0,
+      logoGlow: (k => '0 0 ' + 22 * k + 'px ' + 8 * k + 'px rgba(158,224,249,0.85),0 0 ' + 55 * k + 'px ' + 20 * k + 'px rgba(110,190,240,0.5)')(sc ? 0.5 : 1),
+      logoRot: st.logoHover ? 3 : 0,
+      headerH: sc ? 72 : 119.788,
+      logoW: lw,
+      logoH: lh,
+      navPad: sc ? (bp === 'm' ? 14 : 20) : 45,
+      heFilter: st.lang === 'he' ? 'none' : 'grayscale(1)',
+      heOpacity: st.lang === 'he' ? 1 : 0.55,
+      enFilter: st.lang === 'en' ? 'none' : 'grayscale(1)',
+      enOpacity: st.lang === 'en' ? 1 : 0.55,
+      dividerDisplay: bp === 'd' ? 'block' : 'none',
+      tabFont: st.wide === false ? 18 : 24,
+      aboutMinH: bp === 'd' ? Math.round(594 * visScale) + 34 : 0,
+      visScale, visW: bp === 'd' ? Math.round(1083 * visScale) : Math.round(contentW), visH: Math.round(594 * visScale),
+      navDisplay: st.wide === false ? 'none' : 'flex',
+      burgerDisplay: st.wide === false ? 'flex' : 'none',
+      menuOpen: !!st.menuOpen && st.wide === false,
+      btnDisp: bp === 'm' && st.menuOpen && st.wide === false ? 'none' : 'flex',
+      closeMenu: () => this.setState({ menuOpen: false }),
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      setHe: () => this.setState({ lang: 'he' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      nav: navItems.map(([id, label, href]) => ({
+        label, href,
+        color: st.active === id ? 'rgb(21,49,137)' : 'rgb(0,0,0)',
+        weight: st.active === id ? 500 : 400,
+        onClick: () => this.setState({ active: id, menuOpen: false }),
+        subs: (SUBS[id] || []).map(([label, href]) => ({ label, href })),
+        subDisp: st.openSub === id && SUBS[id] ? 'block' : 'none',
+        enter: () => this.setState({ openSub: id }),
+        leave: () => this.setState({ openSub: null })
+      })),
+      stats: [
+        { n: 247726, label: 'מספר הק"מ חרשו את הארץ' },
+        { n: 416, label: 'מספר סיורי השטח' },
+        { n: 183, label: 'מספר העתירות החדשות' },
+        { n: 7, label: 'התכתבות משפטית' }
+      ].map((x, i) => ({ ...x, value: Math.round(x.n * (st.prog ?? 0)).toLocaleString('en-US'), bl: (i + 1) % g.statCols === 0 ? 'none' : '1px solid rgb(255,255,255)' })),
+      mapVariant: regionVariant[st.region || this._dk],
+      distName: DIST[this._dk][0], distText: DIST[this._dk][1], distPhoto: DIST[this._dk][2],
+      hvNorth: () => this.setState({ region: 'north' }),
+      hvYosh: () => this.setState({ region: 'yosh' }),
+      hvJerusalem: () => this.setState({ region: 'jerusalem' }),
+      hvCenter: () => this.setState({ region: 'center' }),
+      hvNegev: () => this.setState({ region: 'negev' }),
+      onMapLeave: () => this.setState({ region: null }),
+      depts: depts.map(([label], i) => {
+        const on = st.dept === i;
+        return {
+          label,
+          bg: on ? 'rgb(252,251,246)' : 'rgb(245,245,245)',
+          borderBottom: on && bp === 'd' ? '1px solid rgb(252,251,246)' : '1px solid rgb(0,0,0)',
+          fw: on && bp === 'm' ? 700 : 400,
+          z: on ? 2 : 1,
+          onClick: () => this.setState({ dept: i })
+        };
+      }),
+      dept: { title: depts[st.dept][1], body: deptBody },
+      news: [
+        { img: 'assets/news-1.png', title: 'חברי הכנסת נקלעו לאזעקה', body: 'בהמשך למטחים הכבדים ששוגרו ליישובי הצפון ורגע לפני ההסלמה בלחימה, הגענו למרום הגליל, קרית שמונה וצפת עם חברי שדולת ארץ ישראל בכנסת ואנשי תקשורת' },
+        { img: 'assets/news-2.png', title: 'אין שתי ירושלים. יש רק אחת.', body: 'סיור ח"כים מיוחד בירושלים: יצאנו לראשונה לסיור ייעודי לחברי כנסת במזרח ירושלים, בהובלת יהודה נועם רכז ירושלים ברגבים. הצגנו את אתגרי המשילות והמקרקעין בבירה' },
+        { img: 'assets/news-3.png', title: "ח'רבת זיף: מגרעת רכבים", body: '70856-09-25 | בבית המשפט המחוזי בירושלים בשבתו כבית משפט לעניינים מנהליים. העותרת: תנועת רגבים, ע.ר. 580460319 באמצעות עו”ד בועז ארזי' }
+      ],
+      email: st.email,
+      agree: st.agree,
+      onEmail: (e) => this.setState({ email: e.target.value, subscribed: false }),
+      onAgree: (e) => this.setState({ agree: e.target.checked }),
+      onInvalidEmail: (e) => { const he = this.state.lang !== 'en', t = e.target; t.setCustomValidity(he ? (t.validity.valueMissing ? 'נא להזין כתובת אימייל.' : 'נא להזין כתובת אימייל תקינה, למשל name@example.com.') : ''); },
+      onInvalidAgree: (e) => { e.target.setCustomValidity(this.state.lang !== 'en' ? "הרשמה / השארת פרטים לא אפשרית ללא סימון הצ'ק בוקס של מדיניות הפרטיות." : ''); },
+      onInputValid: (e) => e.target.setCustomValidity(''),
+      onSubscribe: (e) => { e.preventDefault(); const em = (this.state.email || e.target.querySelector('input[type=email]').value || '').trim(); const okE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em), okC = e.target.querySelector('input[type=checkbox]').checked; if (!okE || !okC) { this.setState({ formErr: !okE && !okC ? 'both' : !okE ? 'email' : 'check' }); return; } this.setState({ subscribed: true, email: '', formErr: false }); },
+      formErrDisp: st.formErr ? 'block' : 'none',
+      formErrText: st.formErr === 'email' ? 'נא למלא כתובת מייל תקינה' : st.formErr === 'check' ? "נא לסמן את הצ'ק בוקס" : "נא למלא כתובת מייל תקינה ולסמן את הצ'ק בוקס",
+      subscribeLabel: st.subscribed ? 'נרשמת, תודה!' : 'הרשמה לניוזלטר'
+    };
+  }
+}
+</script>
+</body>
+</html>
