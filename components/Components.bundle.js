@@ -3226,10 +3226,10 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 95.6,
-      top: 0,
-      width: 40.698,
-      height: 112.352,
+      left: 94.312,
+      top: 8.106,
+      width: 40.148,
+      height: 110.834,
       color: "rgb(29,69,115)"
     }
   }, /*#__PURE__*/React.createElement("path", {
@@ -3243,10 +3243,10 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 20.162,
-      top: 22.936,
-      width: 84.913,
-      height: 133.917,
+      left: 19.894,
+      top: 30.732,
+      width: 83.765,
+      height: 132.107,
       color: "rgb(29,69,115)"
     }
   }, /*#__PURE__*/React.createElement("path", {
@@ -3260,10 +3260,10 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 0,
-      top: 77.7,
-      width: 44.056,
-      height: 80.694,
+      left: 0.004,
+      top: 84.756,
+      width: 43.461,
+      height: 79.603,
       color: "rgb(29,69,115)"
     }
   }, /*#__PURE__*/React.createElement("path", {
@@ -4431,7 +4431,7 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 23.199,
+      left: 30.199,
       top: 0,
       width: 49.773,
       height: 96.071,
@@ -4448,7 +4448,7 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 0,
+      left: 7,
       top: 78.072,
       width: 65.594,
       height: 79.346,
@@ -4831,8 +4831,8 @@ function Group195(_p = {}) {
     fill: "none",
     style: {
       position: "absolute",
-      left: 4.969,
-      top: 286.453,
+      left: 3.469,
+      top: 286.953,
       width: 153.24,
       height: 295.913,
       mixBlendMode: "hard-light",
